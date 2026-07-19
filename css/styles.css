@@ -1,0 +1,562 @@
+/* ==========================================================================
+   Mitti & Bean — Design Tokens & Base Styles
+   Direction: Warm & Organic — kulhad clay, roasted earth, spice-garden accent
+   ========================================================================== */
+
+/* Fonts are loaded via <link> tags in each page's <head>, not @import —
+   @import is render-blocking and adds a serial round-trip before the
+   stylesheet itself is even parsed. A <link> lets the browser fetch
+   fonts in parallel with everything else. */
+
+:root {
+  /* Color — rooted in kulhad clay, roasted beans, and spice-garden greens/gold.
+     Deliberately pulled darker/rustier than the default "AI terracotta" (#D97757)
+     and off the pure-cream background, so it reads as clay, not template. */
+  --clay-900: #241510;      /* espresso — deep backgrounds */
+  --clay-800: #34211a;      /* roasted bean — panels on dark */
+  --clay-700: #5a3527;      /* dark roast text on light */
+  --clay-600: #8a4a2f;      /* toasted terracotta — secondary accent */
+  --kulhad-500: #a8532e;    /* PRIMARY — burnt clay/kulhad red-brown */
+  --kulhad-600: #a14f2c;    /* text-safe shade — passes WCAG AA (4.6:1) on cream backgrounds */
+  --kulhad-400: #c2683c;    /* kulhad hover / lighter accent */
+  --sesame-100: #efe6d6;    /* warm sesame — base light background */
+  --sesame-50:  #f7f1e6;    /* card / surface on light */
+  --cream-text: #f4ead9;    /* text on dark backgrounds */
+  --moss-600: #4f5c34;      /* spice-garden green — tertiary accent */
+  --moss-500: #6b7a45;
+  --turmeric-500: #b9832f;  /* gold — small highlight moments only */
+  --ink: #1c130d;           /* near-black warm ink for body text on light */
+  --line-soft: rgba(36, 21, 16, 0.12);
+  --line-on-dark: rgba(244, 234, 217, 0.16);
+
+  /* Type */
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", serif;
+  --font-body: "Karla", -apple-system, "Segoe UI", sans-serif;
+
+  /* Motion */
+  --ease-organic: cubic-bezier(0.25, 0.8, 0.35, 1);
+  --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);   /* content arriving — no bounce, decisive stop */
+  --ease-snap: cubic-bezier(0.34, 1.56, 0.64, 1); /* interactive feedback — slight overshoot */
+  --dur-fast: 200ms;
+  --dur-med: 420ms;
+  --dur-slow: 900ms;
+
+  /* Layout */
+  --container: 1180px;
+  --radius-organic: 255px 15px 225px 15px/15px 225px 15px 255px;
+  --grain-opacity: 0.05;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body {
+  margin: 0;
+  background: var(--sesame-100);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img, svg { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, h4, p { margin: 0; }
+button { font-family: inherit; border: none; background: none; cursor: pointer; }
+
+/* Subtle paper-grain texture, used sparingly on large panels */
+.grain {
+  position: relative;
+  isolation: isolate;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Focus visibility — never remove */
+:focus-visible {
+  outline: 2px solid var(--turmeric-500);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- Layout helpers ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+@media (min-width: 768px) { .container { padding-inline: 40px; } }
+
+section { padding-block: 88px; }
+@media (max-width: 767px) { section { padding-block: 56px; } }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--kulhad-600);
+}
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1.5px;
+  background: var(--kulhad-500);
+}
+
+.section-head { max-width: 640px; margin-bottom: 48px; }
+.section-head h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.12;
+  margin-top: 14px;
+  color: var(--clay-900);
+}
+.section-head p { margin-top: 16px; font-size: 17px; color: var(--clay-700); }
+.on-dark .section-head h2 { color: var(--cream-text); }
+.on-dark .section-head p { color: rgba(244,234,217,0.72); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14.5px;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-organic), background var(--dur-fast) var(--ease-organic), color var(--dur-fast) var(--ease-organic), box-shadow var(--dur-fast) var(--ease-organic);
+}
+.btn-primary {
+  background-color: var(--kulhad-500);
+  background-image: linear-gradient(var(--kulhad-400), var(--kulhad-400));
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 0%;
+  color: var(--cream-text);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+  transition: transform var(--dur-fast) var(--ease-organic), background-size 420ms var(--ease-settle), box-shadow var(--dur-fast) var(--ease-organic);
+}
+.btn-primary:hover { background-size: 100% 100%; transform: translateY(-2px); }
+.btn-ghost {
+  background-color: transparent;
+  background-image: linear-gradient(rgba(244,234,217,0.14), rgba(244,234,217,0.14));
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 0%;
+  color: currentColor;
+  border: 1.5px solid currentColor;
+  transition: transform var(--dur-fast) var(--ease-organic), background-size 420ms var(--ease-settle);
+}
+.btn-ghost:hover { background-size: 100% 100%; transform: translateY(-2px); }
+.on-light .btn-ghost { background-image: linear-gradient(rgba(36,21,16,0.06), rgba(36,21,16,0.06)); }
+.btn-arrow { transition: transform var(--dur-fast) var(--ease-organic); }
+.btn:hover .btn-arrow { transform: translateX(3px); }
+
+/* ---------- Header / Nav ---------- */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding-block: 20px;
+  transition: padding var(--dur-med) var(--ease-organic), background var(--dur-med) var(--ease-organic), box-shadow var(--dur-med) var(--ease-organic);
+}
+.site-header .container { display: flex; align-items: center; justify-content: space-between; }
+.site-header.scrolled {
+  padding-block: 12px;
+  background: rgba(36, 21, 16, 0.92);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+}
+.brand { display: flex; align-items: center; gap: 10px; color: var(--cream-text); }
+.brand-mark { width: 34px; height: 34px; flex-shrink: 0; }
+.brand-word {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 0.01em;
+}
+.brand-word em { font-style: italic; color: var(--turmeric-500); }
+
+.nav-links {
+  display: none;
+  align-items: center;
+  gap: 36px;
+}
+.nav-links a {
+  color: rgba(244,234,217,0.82);
+  font-weight: 600;
+  font-size: 14.5px;
+  position: relative;
+  padding-block: 4px;
+  transition: color var(--dur-fast) var(--ease-organic);
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 1.5px;
+  background: var(--turmeric-500);
+  transition: width var(--dur-fast) var(--ease-organic);
+}
+.nav-links a:hover { color: var(--cream-text); }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-links a.active { color: var(--cream-text); }
+.nav-actions { display: flex; align-items: center; gap: 14px; }
+.nav-actions .btn-primary { padding: 11px 20px; font-size: 13.5px; }
+
+@media (min-width: 960px) {
+  .nav-links { display: flex; }
+}
+
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 30px;
+  padding: 6px 0;
+}
+.nav-toggle span { width: 100%; height: 2px; background: var(--cream-text); transition: transform var(--dur-fast) var(--ease-organic), opacity var(--dur-fast) var(--ease-organic); }
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media (min-width: 960px) { .nav-toggle { display: none; } }
+
+.mobile-panel {
+  position: fixed;
+  inset: 0;
+  background: var(--clay-900);
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+  padding: 32px;
+  transform: translateX(100%);
+  transition: transform var(--dur-med) var(--ease-organic);
+}
+.mobile-panel.open { transform: translateX(0); }
+.mobile-panel a {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 25px;
+  color: var(--cream-text);
+}
+.mobile-panel .btn { margin-top: 14px; align-self: flex-start; padding: 13px 22px; font-size: 14px; }
+@media (min-width: 960px) { .mobile-panel { display: none; } }
+
+/* ---------- Kulhad / steam signature mark ---------- */
+.steam-wrap { position: relative; }
+.steam {
+  position: absolute;
+  bottom: 96%;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(to top, rgba(244,234,217,0.5), rgba(244,234,217,0));
+  transform-origin: bottom center;
+  animation: rise 3.2s var(--ease-organic) infinite;
+}
+.steam.s1 { left: 38%; height: 46px; animation-delay: 0s; }
+.steam.s2 { left: 50%; height: 58px; animation-delay: 0.6s; }
+.steam.s3 { left: 62%; height: 42px; animation-delay: 1.2s; }
+@keyframes rise {
+  0%   { transform: translateY(0) scaleY(0.6) skewX(0deg); opacity: 0; }
+  15%  { opacity: 0.9; }
+  50%  { transform: translateY(-30px) scaleY(1) skewX(4deg); opacity: 0.55; }
+  100% { transform: translateY(-70px) scaleY(1.3) skewX(-4deg); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .steam { animation: none; opacity: 0.35; }
+}
+
+/* ---------- Scroll reveal — differentiated by content type, not one blanket fade ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(4px);
+  transition: opacity 620ms var(--ease-settle), transform 620ms var(--ease-settle), filter 620ms var(--ease-settle);
+}
+.reveal.in { opacity: 1; transform: translateY(0); filter: blur(0); }
+.reveal-group .reveal:nth-child(1) { transition-delay: 0ms; }
+.reveal-group .reveal:nth-child(2) { transition-delay: 80ms; }
+.reveal-group .reveal:nth-child(3) { transition-delay: 160ms; }
+.reveal-group .reveal:nth-child(4) { transition-delay: 240ms; }
+
+/* Imagery reveals like a print developing — a mask wipes open and the frame
+   settles from a slight overscale, rather than sliding/fading like the text does.
+   Requires the element (or a parent with matching border-radius) to clip overflow. */
+.reveal-mask {
+  clip-path: inset(0 0 100% 0 round var(--radius-organic));
+  transition: clip-path 900ms var(--ease-settle);
+}
+.reveal-mask.in { clip-path: inset(0 0 0% 0 round var(--radius-organic)); }
+.reveal-mask img, .reveal-mask svg, .reveal-mask.blob-frame, .reveal-mask.drink-frame {
+  transform: scale(1.08);
+  transition: transform 900ms var(--ease-settle);
+}
+.reveal-mask.in img, .reveal-mask.in svg { transform: scale(1); }
+.reveal-mask-rect { clip-path: inset(0 0 100% 0); }
+.reveal-mask-rect.in { clip-path: inset(0 0 0% 0); }
+
+.reveal-group .reveal-mask:nth-child(1) { transition-delay: 0ms; }
+.reveal-group .reveal-mask:nth-child(2) { transition-delay: 110ms; }
+.reveal-group .reveal-mask:nth-child(3) { transition-delay: 220ms; }
+.reveal-group .reveal-mask:nth-child(4) { transition-delay: 330ms; }
+.reveal-group .reveal-mask:nth-child(5) { transition-delay: 440ms; }
+.reveal-group .reveal-mask:nth-child(6) { transition-delay: 550ms; }
+.gallery-tile.reveal-mask { clip-path: inset(0 0 100% 0); }
+.gallery-tile.reveal-mask.in { clip-path: inset(0 0 0% 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-mask, .reveal-mask img, .reveal-mask svg {
+    opacity: 1; transform: none; clip-path: none; transition: none;
+  }
+}
+
+/* Stat / count-up numerals — fixed-width digits so the layout doesn't jitter while counting */
+.num { font-variant-numeric: tabular-nums; }
+
+/* Magnetic primary buttons — JS applies the pull via transform (ease-snap spring-back);
+   this also has to carry background-size or it silently overrides the fill-hover transition above. */
+.btn-magnetic { transition: transform 420ms var(--ease-snap), background-size 420ms var(--ease-settle), color var(--dur-fast) var(--ease-organic), box-shadow var(--dur-fast) var(--ease-organic); }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--clay-900);
+  color: rgba(244,234,217,0.78);
+  padding-block: 72px 32px;
+}
+.footer-grid {
+  display: grid;
+  gap: 44px;
+  grid-template-columns: 1.3fr 1fr 1fr 1.1fr;
+}
+@media (max-width: 860px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
+.footer-grid h4 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream-text);
+  margin-bottom: 18px;
+}
+.footer-grid li { margin-bottom: 10px; font-size: 14.5px; }
+.footer-grid a:hover { color: var(--cream-text); }
+.footer-brand p { margin-top: 14px; font-size: 14.5px; max-width: 30ch; color: rgba(244,234,217,0.62); }
+.social-row { display: flex; gap: 12px; margin-top: 20px; }
+.social-row a {
+  width: 36px; height: 36px;
+  border: 1px solid var(--line-on-dark);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color var(--dur-fast), transform var(--dur-fast);
+}
+.social-row a:hover { border-color: var(--turmeric-500); transform: translateY(-2px); }
+.footer-bottom {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-on-dark);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  justify-content: space-between;
+  font-size: 13px;
+  color: rgba(244,234,217,0.5);
+}
+
+/* ---------- Shared card patterns ---------- */
+.card {
+  background: var(--sesame-50);
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  padding: 28px;
+  transition: transform var(--dur-med) var(--ease-snap), box-shadow var(--dur-med) var(--ease-settle), border-color var(--dur-med) var(--ease-organic);
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(36,21,16,0.28); border-color: var(--kulhad-500); }
+
+/* Corner-bracket hover accent — a quiet "framed/curated" moment shared by every card type
+   (drink cards, value cards, team, info-strip). One idea, applied consistently, not four. */
+.bracket-hover { position: relative; }
+.bracket-hover::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity var(--dur-med) var(--ease-settle), transform var(--dur-med) var(--ease-settle);
+  background:
+    linear-gradient(var(--kulhad-500), var(--kulhad-500)) top left / 13px 1.5px no-repeat,
+    linear-gradient(var(--kulhad-500), var(--kulhad-500)) top left / 1.5px 13px no-repeat,
+    linear-gradient(var(--kulhad-500), var(--kulhad-500)) top right / 13px 1.5px no-repeat,
+    linear-gradient(var(--kulhad-500), var(--kulhad-500)) top right / 1.5px 13px no-repeat,
+    linear-gradient(var(--kulhad-500), var(--kulhad-500)) bottom left / 13px 1.5px no-repeat,
+    linear-gradient(var(--kulhad-500), var(--kulhad-500)) bottom left / 1.5px 13px no-repeat,
+    linear-gradient(var(--kulhad-500), var(--kulhad-500)) bottom right / 13px 1.5px no-repeat,
+    linear-gradient(var(--kulhad-500), var(--kulhad-500)) bottom right / 1.5px 13px no-repeat;
+}
+.bracket-hover:hover::after { opacity: 1; transform: scale(1); }
+.on-dark .bracket-hover::after {
+  background-image:
+    linear-gradient(var(--turmeric-500), var(--turmeric-500)), linear-gradient(var(--turmeric-500), var(--turmeric-500)),
+    linear-gradient(var(--turmeric-500), var(--turmeric-500)), linear-gradient(var(--turmeric-500), var(--turmeric-500)),
+    linear-gradient(var(--turmeric-500), var(--turmeric-500)), linear-gradient(var(--turmeric-500), var(--turmeric-500)),
+    linear-gradient(var(--turmeric-500), var(--turmeric-500)), linear-gradient(var(--turmeric-500), var(--turmeric-500));
+}
+@media (prefers-reduced-motion: reduce) {
+  .bracket-hover::after { transition: opacity var(--dur-fast) linear; }
+}
+
+.tag-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(107,122,69,0.12);
+  color: var(--moss-600);
+}
+
+/* Blob image frame — used instead of stock photography */
+.blob-frame {
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-organic);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ---------- Ember field ----------
+   Small warm particles drifting upward — used behind the reservation section,
+   which now reads as a dark, coal-lit moment rather than a plain form.
+   Pinned to a fixed-height band at the TOP of the section (not the whole section)
+   so it stays correctly sized and visible even when the section grows very tall
+   on mobile, where the form and map stack instead of sitting side by side. */
+.ember-field {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 460px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+@media (max-width: 699px) { .ember-field { height: 360px; } }
+.ember {
+  position: absolute;
+  left: var(--x, 50%);
+  bottom: 0;
+  width: var(--size, 6px);
+  height: var(--size, 6px);
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffcf8a 0%, var(--turmeric-500) 45%, rgba(168,83,46,0) 75%);
+  box-shadow: 0 0 8px 2px rgba(255, 178, 96, 0.6);
+  opacity: 0;
+  animation: ember-rise var(--dur, 9s) ease-in var(--delay, 0s) infinite;
+}
+@keyframes ember-rise {
+  0%   { transform: translate(0, 0) scale(0.7); opacity: 0; }
+  8%   { opacity: 0.95; }
+  50%  { transform: translate(calc(var(--drift, 18px) * 0.6), -230px) scale(1); opacity: 0.85; }
+  92%  { opacity: 0.35; }
+  100% { transform: translate(var(--drift, 18px), -460px) scale(0.5); opacity: 0; }
+}
+@media (max-width: 699px) {
+  @keyframes ember-rise {
+    0%   { transform: translate(0, 0) scale(0.7); opacity: 0; }
+    8%   { opacity: 0.95; }
+    50%  { transform: translate(calc(var(--drift, 18px) * 0.6), -180px) scale(1); opacity: 0.85; }
+    92%  { opacity: 0.35; }
+    100% { transform: translate(var(--drift, 18px), -360px) scale(0.5); opacity: 0; }
+  }
+}
+/* Reduced-motion is already handled globally (animation-duration: 0.01ms), which
+   freezes embers on their first frame rather than removing them — still present,
+   just still, consistent with how the rest of the site treats motion preference. */
+
+
+
+/* ---------- Mobile action bar ----------
+   A phone-native pattern (tap-to-call + reserve, thumb reach at the bottom of the screen) —
+   desktop has no equivalent because hovering the header CTA is already effortless there.
+   This is a genuine mobile-specific decision, not the desktop nav compressed. */
+.mobile-action-bar { display: none; }
+@media (max-width: 699px) {
+  body { padding-bottom: 76px; }
+  .mobile-action-bar {
+    display: flex;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 90;
+    gap: 10px;
+    background: var(--clay-900);
+    border-top: 1px solid var(--line-on-dark);
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+  .mobile-action-bar a {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: transform var(--dur-fast) var(--ease-organic);
+  }
+  .mobile-action-bar a:active { transform: scale(0.96); }
+  .maa-call { background: transparent; border: 1.5px solid var(--line-on-dark); color: var(--cream-text); }
+  .maa-reserve { background: var(--kulhad-500); color: var(--cream-text); }
+  /* the fixed bar sits below everything except the mobile nav panel itself */
+  .mobile-panel { z-index: 99; }
+}
+
+/* ---------- Mobile refinement ----------
+   Smaller, quieter type and tighter buttons read as more considered on a phone
+   than the desktop scale simply carried down — this is the actual typography/
+   spacing pass for mobile, not just the layout restructuring done elsewhere. */
+@media (max-width: 699px) {
+  .brand-word { font-size: 17px; white-space: nowrap; }
+  /* Redundant on mobile — the sticky action bar already surfaces Reserve/Order,
+     and this button was forcing the brand name to wrap onto two lines. */
+  .nav-actions .btn-primary { display: none; }
+
+  .btn { padding: 12px 20px; font-size: 13.5px; }
+
+  .section-head { margin-bottom: 36px; }
+  .section-head h2 { font-size: clamp(23px, 6.5vw, 28px); line-height: 1.22; }
+  .section-head p { font-size: 15px; margin-top: 12px; }
+
+  .eyebrow { font-size: 11px; }
+
+  /* The hero is 100vh, but the fixed action bar sits on top of the bottom 76px
+     of whatever's currently in view — without this, the hero-meta stat row was
+     rendering right underneath it, invisible. */
+  .hero { min-height: calc(100vh - 76px); }
+}

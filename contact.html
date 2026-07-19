@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visit Us — Mitti & Bean, Golf Course Road, Gurugram</title>
+<meta name="description" content="Find Mitti & Bean on Golf Course Road, Sector 42, Gurugram. Reserve a table or order ahead for pickup.">
+
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+<link rel="icon" type="image/png" href="icons/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="theme-color" content="#241510">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mitti & Bean">
+<meta property="og:title" content="Visit Us — Mitti & Bean, Golf Course Road, Gurugram">
+<meta property="og:description" content="Find Mitti & Bean on Golf Course Road, Sector 42, Gurugram. Reserve a table or order ahead for pickup.">
+<meta property="og:image" content="https://mittiandbean.in/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://mittiandbean.in/contact.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Visit Us — Mitti & Bean, Golf Course Road, Gurugram">
+<meta name="twitter:description" content="Reserve a table or order ahead for pickup.">
+<meta name="twitter:image" content="https://mittiandbean.in/images/og-image.jpg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "Mitti & Bean",
+  "image": "https://mittiandbean.in/images/og-image.jpg",
+  "url": "https://mittiandbean.in/contact.html",
+  "telephone": "+91-124-456-7890",
+  "priceRange": "₹₹",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Ground Floor, Tower B, Golf Course Road, Sector 42",
+    "addressLocality": "Gurugram",
+    "addressRegion": "HR",
+    "postalCode": "122002",
+    "addressCountry": "IN"
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "22:30" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday","Sunday"], "opens": "09:00", "closes": "23:00" }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Fraunces:ital,opsz,wght@1,9..144,500&family=Karla:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  .page-hero {
+    background: var(--clay-900); color: var(--cream-text);
+    padding-top: 168px; padding-bottom: 64px;
+  }
+  .page-hero h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(38px,5.4vw,58px); margin-top: 14px; }
+  .page-hero p { margin-top: 16px; max-width: 56ch; color: rgba(244,234,217,0.72); font-size: 17px; }
+
+  .info-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); }
+  @media (max-width: 860px) { .info-strip { grid-template-columns: 1fr 1fr; } }
+  .info-card { background: var(--sesame-50); padding: 28px 24px; }
+  .info-card svg { margin-bottom: 14px; }
+  .info-card h3 { font-family: var(--font-body); font-weight: 700; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--kulhad-500); }
+  .info-card p { margin-top: 8px; font-size: 15px; color: var(--ink); line-height: 1.55; }
+  .info-card a:hover { color: var(--kulhad-500); }
+
+  .visit-split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  @media (max-width: 900px) { .visit-split { grid-template-columns: 1fr; } }
+
+  .map-frame { border-radius: 6px; overflow: hidden; border: 1px solid var(--line-soft); aspect-ratio: 4/3.4; }
+  .map-frame iframe { width: 100%; height: 100%; border: 0; }
+
+  .res-form { background: var(--sesame-50); border: 1px solid var(--line-soft); border-radius: 8px; padding: 32px; }
+  #reserve { position: relative; background: var(--clay-900); overflow: hidden; }
+  #reserve .container { position: relative; z-index: 1; }
+  .toggle-row { display: flex; gap: 10px; margin-bottom: 24px; }
+  .toggle-row label { flex: 1; text-align: center; padding: 12px; border: 1px solid var(--line-soft); border-radius: 6px; font-weight: 700; font-size: 14px; cursor: pointer; transition: background var(--dur-fast), border-color var(--dur-fast), color var(--dur-fast); }
+  .toggle-row input { position: absolute; opacity: 0; pointer-events: none; }
+  .toggle-row input:checked + label { background: var(--kulhad-500); color: var(--cream-text); border-color: var(--kulhad-500); }
+
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  @media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label { font-size: 12.5px; font-weight: 700; letter-spacing: 0.03em; color: var(--clay-700); text-transform: uppercase; }
+  .field input, .field select, .field textarea {
+    padding: 12px 14px; border: 1px solid var(--line-soft); border-radius: 5px;
+    font-family: var(--font-body); font-size: 15px; background: #fff; color: var(--ink);
+    transition: border-color var(--dur-fast);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--kulhad-500); outline: none; }
+  .res-form .btn-primary { width: 100%; justify-content: center; margin-top: 8px; padding-block: 15px; }
+  .form-status { margin-top: 16px; font-size: 14px; color: var(--moss-600); font-weight: 700; opacity: 0; transition: opacity var(--dur-med); }
+  .form-status.in { opacity: 1; }
+</style>
+</head>
+<body>
+
+<header class="site-header scrolled">
+  <div class="container">
+    <a href="index.html" class="brand" aria-label="Mitti & Bean home">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M10 16h20l-2.4 14.5a3 3 0 0 1-3 2.5h-9.2a3 3 0 0 1-3-2.5L10 16Z" stroke="#F4EAD9" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M10 16c0-2 2-3 10-3s10 1 10 3" stroke="#F4EAD9" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-word">Mitti <em>&amp;</em> Bean</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">Our Story</a>
+      <a href="contact.html" class="active">Visit Us</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#reserve" class="btn btn-primary">
+        <span>Reserve / Order</span>
+        <svg class="btn-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-panel">
+  <a href="index.html">Home</a>
+  <a href="menu.html">Menu</a>
+  <a href="about.html">Our Story</a>
+  <a href="contact.html">Visit Us</a>
+  <a href="#reserve" class="btn btn-primary">Reserve / Order</a>
+</div>
+
+<section class="page-hero grain">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--turmeric-500);">Visit Us</span>
+    <h1>Find your table on Golf Course Road.</h1>
+    <p>Walk-ins welcome most hours — but the 8–10am window fills fast with the corporate-park crowd. Reserve ahead if you'd rather not queue.</p>
+  </div>
+</section>
+
+<div class="info-strip reveal-group">
+  <div class="info-card reveal">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A8532E" stroke-width="1.8"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+    <h3>Address</h3>
+    <p>Ground Floor, Tower B<br>Golf Course Road, Sector 42<br>Gurugram, Haryana 122002</p>
+  </div>
+  <div class="info-card reveal">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A8532E" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+    <h3>Hours</h3>
+    <p>Mon–Fri — 8:00 – 22:30<br>Sat–Sun — 9:00 – 23:00</p>
+  </div>
+  <div class="info-card reveal">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A8532E" stroke-width="1.8"><path d="M3 5h4l2 5-2.5 1.5a12 12 0 0 0 6 6L14 15l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 7a2 2 0 0 1 2-2Z"/></svg>
+    <h3>Phone</h3>
+    <p><a href="tel:+911244567890">+91 124 456 7890</a><br><a href="https://wa.me/911244567890" target="_blank" rel="noopener">WhatsApp us</a></p>
+  </div>
+  <div class="info-card reveal">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A8532E" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+    <h3>Email</h3>
+    <p><a href="mailto:hello@mittiandbean.in">hello@mittiandbean.in</a><br>For events &amp; press</p>
+  </div>
+</div>
+
+<section id="reserve" class="on-dark">
+  <div class="ember-field" aria-hidden="true">
+    <span class="ember" style="--x:6%;  --size:4px; --dur:8.5s;  --delay:0s;    --drift:22px;"></span>
+    <span class="ember" style="--x:15%; --size:6px; --dur:10.5s; --delay:1.4s;  --drift:-16px;"></span>
+    <span class="ember" style="--x:24%; --size:3px; --dur:7.5s;  --delay:3.1s;  --drift:14px;"></span>
+    <span class="ember" style="--x:33%; --size:5px; --dur:9.5s;  --delay:0.6s;  --drift:-20px;"></span>
+    <span class="ember" style="--x:42%; --size:4px; --dur:11s;   --delay:2.2s;  --drift:18px;"></span>
+    <span class="ember" style="--x:51%; --size:7px; --dur:8s;    --delay:4s;    --drift:-14px;"></span>
+    <span class="ember" style="--x:60%; --size:3px; --dur:10s;   --delay:1s;    --drift:20px;"></span>
+    <span class="ember" style="--x:68%; --size:5px; --dur:9s;    --delay:2.8s;  --drift:-18px;"></span>
+    <span class="ember" style="--x:76%; --size:4px; --dur:11.5s; --delay:0.3s;  --drift:16px;"></span>
+    <span class="ember" style="--x:84%; --size:6px; --dur:8.2s;  --delay:3.6s;  --drift:-22px;"></span>
+    <span class="ember" style="--x:91%; --size:3px; --dur:10.2s; --delay:1.8s;  --drift:12px;"></span>
+    <span class="ember" style="--x:97%; --size:5px; --dur:9.2s;  --delay:2.5s;  --drift:-16px;"></span>
+  </div>
+  <div class="container">
+    <div class="visit-split">
+      <div>
+        <div class="section-head" style="margin-bottom:28px;">
+          <span class="eyebrow" style="color:var(--turmeric-500);">Reserve or Order Ahead</span>
+          <h2>Save a table, or skip the queue</h2>
+          <p>Fill this in and we'll confirm by phone within the hour — no account, no app download.</p>
+        </div>
+        <form class="res-form reveal" id="resForm" aria-labelledby="reserve">
+          <div class="toggle-row">
+            <input type="radio" name="mode" id="modeDine" checked>
+            <label for="modeDine">Dine-in</label>
+            <input type="radio" name="mode" id="modePickup">
+            <label for="modePickup">Order for Pickup</label>
+          </div>
+          <div class="field-row">
+            <div class="field"><label for="fName">Full name</label><input id="fName" type="text" placeholder="Ananya Verma" required></div>
+            <div class="field"><label for="fPhone">Phone number</label><input id="fPhone" type="tel" placeholder="98xxxxxxx1" required></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label for="fDate">Date</label><input id="fDate" type="date" required></div>
+            <div class="field"><label for="fTime">Time</label><input id="fTime" type="time" required></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label for="fGuests">Party size</label>
+              <select id="fGuests"><option>1 guest</option><option selected>2 guests</option><option>3 guests</option><option>4 guests</option><option>5+ guests</option></select>
+            </div>
+            <div class="field"><label for="fEmail">Email (optional)</label><input id="fEmail" type="email" placeholder="you@email.com"></div>
+          </div>
+          <div class="field" style="margin-bottom:20px;">
+            <label for="fNotes">Notes</label>
+            <textarea id="fNotes" rows="3" placeholder="Order-ahead items, allergies, seating preference…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-magnetic">Confirm Request</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <div>
+        <div class="section-head" style="margin-bottom:20px;">
+          <span class="eyebrow" style="color:var(--turmeric-500);">On the Map</span>
+          <h2>Two minutes off Golf Course Road</h2>
+          <p>Basement parking available; look for the terracotta awning next to the Tower B lobby.</p>
+        </div>
+        <div class="map-frame reveal-mask reveal-mask-rect">
+          <iframe
+            src="https://www.google.com/maps?q=Golf+Course+Road,+Sector+42,+Gurugram,+Haryana&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Map showing Mitti & Bean location on Golf Course Road, Gurugram">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer grain">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand" style="margin-bottom:4px;">
+          <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M10 16h20l-2.4 14.5a3 3 0 0 1-3 2.5h-9.2a3 3 0 0 1-3-2.5L10 16Z" stroke="#F4EAD9" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M10 16c0-2 2-3 10-3s10 1 10 3" stroke="#F4EAD9" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span class="brand-word">Mitti <em>&amp;</em> Bean</span>
+        </a>
+        <p>Single-origin coffee, roasted in small batches and poured the way Gurugram takes its mornings.</p>
+        <div class="social-row">
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 4h-2a4 4 0 0 0-4 4v3H7v4h2v7h4v-7h3l1-4h-4V8a1 1 0 0 1 1-1h3Z"/></svg></a>
+          <a href="https://wa.me/911244567890" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21l1.5-4.5A8 8 0 1 1 8.5 19.5L3 21Z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="contact.html">Visit Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li>Golf Course Road</li>
+          <li>Sector 42, Gurugram</li>
+          <li>Haryana 122002</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <ul>
+          <li>Mon–Fri — 8:00 – 22:30</li>
+          <li>Sat–Sun — 9:00 – 23:00</li>
+          <li>Kitchen closes 30 min early</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year></span> Mitti &amp; Bean Coffee Co.</span>
+      <span>Golf Course Road, Gurugram, Haryana</span>
+    </div>
+  </div>
+</footer>
+
+
+<div class="mobile-action-bar">
+  <a href="tel:+911244567890" class="maa-call">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5h4l2 5-2.5 1.5a12 12 0 0 0 6 6L14 15l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 7a2 2 0 0 1 2-2Z"/></svg>
+    Call
+  </a>
+  <a href="#reserve" class="maa-reserve">Reserve a Table</a>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
